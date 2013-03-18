@@ -63,9 +63,13 @@
 
   , show: function () {
 
+      var caretpos = getCaretPosition(this.$element[0]); //remember the caret position
+
       var range = window.getSelection().getRangeAt(0); 
       var newElement = document.createElement('span');
       range.insertNode(newElement);
+
+      setCaretPosition(this.$element[0], caretpos); //reset it for FF
 
       var pos = $(newElement).position();
       var height = newElement.offsetHeight;
