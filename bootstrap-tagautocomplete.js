@@ -79,7 +79,7 @@
           left: pos.left - 20 + "px"
         }).show();
 
-      newElement.remove();
+      $(newElement).remove();
 
       this.shown = true
       return this
