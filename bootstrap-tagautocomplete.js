@@ -28,6 +28,7 @@
   var Tagautocomplete = function (element, options) {
     $.fn.typeahead.Constructor.call(this, element, options)
     this.after = this.options.after || this.after
+    this.show = this.options.show || this.show
   }
 
   /* NOTE: TAGAUTOCOMPLETE EXTENDS BOOTSTRAP-TYPEAHEAD.js
@@ -58,6 +59,30 @@
 
   , after: function () {
 
+  }
+
+  , show: function () {
+
+      var range = window.getSelection().getRangeAt(0); 
+      var newElement = document.createElement('span');
+      range.insertNode(newElement);
+
+      var pos = $(newElement).position();
+      var height = newElement.offsetHeight;
+
+      this.$menu
+        .appendTo('body')
+        .show()
+        .css({
+          position: "absolute",
+          top: pos.top + height + "px",
+          left: pos.left - 20 + "px"
+        }).show();
+
+      newElement.remove();
+
+      this.shown = true
+      return this
   }
 
   , extractor: function () {
