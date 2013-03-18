@@ -57,6 +57,30 @@ $(function () {
         tagautocomplete.$menu.remove()
       })
 
+      test("should place menu in body and positioned absolute with left and top", function () {
+        var $div = $('<div contenteditable="true"  />')
+            .appendTo("#qunit-fixture") //inside qunit fixture to test that the menu will still be outside.
+            .tagautocomplete({
+              source: ['aa', 'ab', 'ac']
+            })
+          , tagautocomplete = $div.data('tagautocomplete')
+
+        $div.text('@a')
+        setCaretPosition($div[0], 2)
+        tagautocomplete.lookup()
+
+        ok(tagautocomplete.$menu.is(":visible"), 'tagautocomplete is visible')
+        ok($("body > .typeahead.dropdown-menu").length, 'inside the body')
+        ok(!$("#qunit-fixture > .typeahead.dropdown-menu").length, 'not found in parent')
+
+        equals(tagautocomplete.$menu[0].style.position, 'absolute', 'absolute position')
+        ok(tagautocomplete.$menu[0].style.left, 'has left set')
+        ok(tagautocomplete.$menu[0].style.top, 'has top set')
+        
+        $div.remove()
+        tagautocomplete.$menu.remove()
+      })
+
       test("should accept data source via synchronous function", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
               source: function () {
