@@ -363,15 +363,15 @@ $(function () {
         tagautocomplete.lookup()
         
         $div.change(function() { changed = true });
-        $div.focus(function() { focus = true; blur = false });
-        $div.blur(function() { blur = true; focus = false });
+        $div.focus(function() { focused = true; blured = false });
+        $div.blur(function() { blured = true; focused = false });
 
         $(tagautocomplete.$menu.find('li')[1]).mouseover().click()
 
         equals($div.text(), 's @bbb  a @b', 'div text was correctly set')
         ok(!tagautocomplete.$menu.is(':visible'), 'the menu was hidden')
         ok(changed, 'a change event was fired')
-        ok(focus && !blur, 'focus is still set')
+        ok(focused && !blured, 'focus is still set')
         ok(passed_after, 'the passed after method was fired')
         equals(getCaretPosition($div[0]), 7, 'caret position correctly set')
 
