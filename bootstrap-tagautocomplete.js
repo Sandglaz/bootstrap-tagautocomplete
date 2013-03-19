@@ -73,7 +73,7 @@
           position: "absolute",
           top: pos.top + height + "px",
           left: pos.left + "px"
-        }).show();
+        });
 
       this.shown = true
       return this
