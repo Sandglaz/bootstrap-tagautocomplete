@@ -63,16 +63,8 @@
 
   , show: function () {
 
-      var caretpos = getCaretPosition(this.$element[0]); //remember the caret position
-
-      var range = window.getSelection().getRangeAt(0); 
-      var newElement = document.createElement('span');
-      range.insertNode(newElement);
-
-      setCaretPosition(this.$element[0], caretpos); //reset it for FF
-
-      var pos = $(newElement).position();
-      var height = newElement.offsetHeight;
+      var pos = this.$element.position();
+      var height = this.$element[0].offsetHeight;
 
       this.$menu
         .appendTo('body')
@@ -80,10 +72,8 @@
         .css({
           position: "absolute",
           top: pos.top + height + "px",
-          left: pos.left - 20 + "px"
+          left: pos.left + "px"
         }).show();
-
-      $(newElement).remove();
 
       this.shown = true
       return this
@@ -108,6 +98,7 @@
       var tquery = this.extractor();
       if(!tquery) return false;
 
+      //setting the values that will be needed by select() here, because mouse clicks can change these values.
       this.length_of_query = tquery.length + this.options.character.length
       var range = window.getSelection().getRangeAt(0);
       this.index_for_split = range.startOffset - this.length_of_query;
