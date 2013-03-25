@@ -83,7 +83,7 @@
       var query = this.query;
       var position = getCaretPosition(this.$element[0]);
       query = query.substring(0, position);
-      var regex = new RegExp("(^|\\s)" + this.options.character + "([\\w-]+)$");
+      var regex = new RegExp("(^|\\s)([" + this.options.character + "][\\w-]*)$");
       var result = regex.exec(query);
       if(result && result[2])
         return result[2].trim();
@@ -91,7 +91,7 @@
     }
 
   , updater: function(item) {
-      return this.options.character+item+' ';
+      return item+' ';
   }
 
   , matcher: function (item) {
@@ -99,7 +99,7 @@
       if(!tquery) return false;
 
       //setting the values that will be needed by select() here, because mouse clicks can change these values.
-      this.length_of_query = tquery.length + this.options.character.length
+      this.length_of_query = tquery.length
       var range = window.getSelection().getRangeAt(0);
       this.index_for_split = range.startOffset - this.length_of_query;
       this.node = range.startContainer

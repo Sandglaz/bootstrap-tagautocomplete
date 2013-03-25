@@ -41,7 +41,7 @@ $(function () {
         var $div = $('<div contenteditable="true"  />')
             .appendTo('body')
             .tagautocomplete({
-              source: ['aa', 'ab', 'ac']
+              source: ['@aa', '@ab', '@ac']
             })
           , tagautocomplete = $div.data('tagautocomplete')
 
@@ -61,7 +61,7 @@ $(function () {
         var $div = $('<div contenteditable="true"  />')
             .appendTo("#qunit-fixture") //inside qunit fixture to test that the menu will still be outside.
             .tagautocomplete({
-              source: ['aa', 'ab', 'ac']
+              source: ['@aa', '@ab', '@ac']
             })
           , tagautocomplete = $div.data('tagautocomplete')
 
@@ -84,7 +84,7 @@ $(function () {
       test("should accept data source via synchronous function", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
               source: function () {
-                return ['aa', 'ab', 'ac']
+                return ['@aa', '@ab', '@ac']
               }
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
@@ -104,7 +104,7 @@ $(function () {
       test("should accept data source via asynchronous function", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
               source: function (query, process) {
-                process(['aa', 'ab', 'ac'])
+                process(['@aa', '@ab', '@ac'])
               }
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
@@ -124,7 +124,7 @@ $(function () {
       test("should hide menu when query entered", function () {
         stop()
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aa', 'ab', 'ac']
+              source: ['@aa', '@ab', '@ac']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
 
@@ -149,7 +149,7 @@ $(function () {
 
       test("should set next item when down arrow is pressed", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aa', 'ab', 'ac']
+              source: ['@aa', '@ab', '@ac']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
 
@@ -200,7 +200,7 @@ $(function () {
 
       test("should set div text to selected item", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aa', 'ab', 'ac']
+              source: ['@aa', '@ab', '@ac']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
           , changed = false
@@ -228,7 +228,7 @@ $(function () {
 
       test("should start querying when minLength is met", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aaaa', 'aaab', 'aaac'],
+              source: ['@aaaa', '@aaab', '@aaac'],
               minLength: 3
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
@@ -251,7 +251,7 @@ $(function () {
 
       test("should match the words after the characters ' @'", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aa', 'bb', 'cc']
+              source: ['@aa', '@bb', '@cc']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
         
@@ -263,7 +263,7 @@ $(function () {
         $div.text('s @a')
         setCaretPosition($div[0], 4)
         tagautocomplete.lookup()
-        equals(tagautocomplete.extractor(), 'a', 'has characters to match')
+        equals(tagautocomplete.extractor(), '@a', 'has characters to match')
 
         $div.remove()
         tagautocomplete.$menu.remove()
@@ -271,14 +271,14 @@ $(function () {
 
       test("should match the words just before the cursor position", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aa', 'bb', 'cc']
+              source: ['@aa', '@bb', '@cc']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
         
         $div.text('s @b @a')
         setCaretPosition($div[0], 4)
         tagautocomplete.lookup()
-        equals(tagautocomplete.extractor(), 'b', 'compared with where the caret is')
+        equals(tagautocomplete.extractor(), '@b', 'compared with where the caret is')
 
         $div.remove()
         tagautocomplete.$menu.remove()
@@ -286,14 +286,14 @@ $(function () {
 
       test("should match when it starts with @", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aaa', 'bbb', 'ccc']
+              source: ['@aaa', '@bbb', '@ccc']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
         
         $div.text('@bb a')
         setCaretPosition($div[0], 3)
         tagautocomplete.lookup()
-        equals(tagautocomplete.extractor(), 'bb', 'bb returned')
+        equals(tagautocomplete.extractor(), '@bb', '@bb returned')
 
         $div.remove()
         tagautocomplete.$menu.remove()
@@ -301,14 +301,14 @@ $(function () {
 
       test("should accept matches for letters, numbers, underscore and dashes", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aaa', 'b_-9', 'ccc']
+              source: ['@aaa', '@b_-9', '@ccc']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
         
         $div.text('@b_-9 a')
         setCaretPosition($div[0], 5)
         tagautocomplete.lookup()
-        equals(tagautocomplete.extractor(), 'b_-9', 'b_-9 returned')
+        equals(tagautocomplete.extractor(), '@b_-9', '@b_-9 returned')
 
         $div.remove()
         tagautocomplete.$menu.remove()
@@ -316,7 +316,7 @@ $(function () {
 
       test("can override @ with another character", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['aaa', 'bbb', 'ccc'],
+              source: ['#aaa', '#bbb', '#ccc'],
               character: '#'
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
@@ -324,7 +324,28 @@ $(function () {
         $div.text('#bb a')
         setCaretPosition($div[0], 3)
         tagautocomplete.lookup()
-        equals(tagautocomplete.extractor(), 'bb', 'matched characters after #')
+        equals(tagautocomplete.extractor(), '#bb', 'matched characters after #')
+
+        $div.remove()
+        tagautocomplete.$menu.remove()
+      })
+
+      test("can characters to @", function () {
+        var $div = $('<div contenteditable="true"  />').tagautocomplete({
+              source: ['#aaa', '#bbb', '#ccc', '@abc'],
+              character: '@#'
+            }).appendTo('body')
+          , tagautocomplete = $div.data('tagautocomplete')
+        
+        $div.text('#bb a')
+        setCaretPosition($div[0], 3)
+        tagautocomplete.lookup()
+        equals(tagautocomplete.extractor(), '#bb', 'matched characters after #')
+
+        $div.text('#bb @a')
+        setCaretPosition($div[0], 6)
+        tagautocomplete.lookup()
+        equals(tagautocomplete.extractor(), '@a', 'matched characters after @')
 
         $div.remove()
         tagautocomplete.$menu.remove()
@@ -332,7 +353,7 @@ $(function () {
 
       test("should highlight the matching characters", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['abc', 'bbb', 'ccc']
+              source: ['@bbc', '@bbb', '@ccc']
             }).appendTo('body')
           , tagautocomplete = $div.data('tagautocomplete')
         
@@ -343,7 +364,7 @@ $(function () {
         ok(tagautocomplete.$menu.is(":visible"), 'tagautocomplete is visible')
         equals(tagautocomplete.$menu.find('li').length, 2, 'has 2 items in menu')
         equals(tagautocomplete.$menu.find('.active').length, 1, 'one item is active')
-        equals(tagautocomplete.$menu.find('.active strong').text(), 'b', 'b is highlighted')
+        equals(tagautocomplete.$menu.find('.active strong').text(), '@b', '@b is highlighted')
 
         $div.remove()
         tagautocomplete.$menu.remove()
@@ -351,7 +372,7 @@ $(function () {
 
       test("should replace only the one node (with mouse click)", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['abc', 'bbb', 'ccc'],
+              source: ['@bbc', '@bbb', '@ccc'],
               after: function(){
                 passed_after = true
               }
@@ -381,7 +402,7 @@ $(function () {
 
       test("should replace only the one node (with keypress)", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
-              source: ['abcd', 'bbb', 'ccc'],
+              source: ['@bbcd', '@bbb', '@ccc'],
               after: function(){
                 passed_after = true
               }
@@ -406,7 +427,7 @@ $(function () {
         , keyCode: 13
         })
 
-        equals($div.text(), 's @abcd  a @b', 'div text was correctly set')
+        equals($div.text(), 's @bbcd  a @b', 'div text was correctly set')
         ok(!tagautocomplete.$menu.is(':visible'), 'the menu was hidden')
         ok(passed_after, 'the passed after method was fired')
         equals(getCaretPosition($div[0]), 8, 'caret position correctly set')
