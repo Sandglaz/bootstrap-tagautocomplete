@@ -41,7 +41,7 @@
     <script>
     $(document).ready(function(){
       $('div#autotag').tagautocomplete({
-        source: ['ann', 'bill', 'casey', 'daryl', 'emma', 'faris', 'george', 'hanna', 'illy', 'john', 'kelly', 'lara', 'mariam', 'mention', 'nancy', 'nada', 'omar', 'peter', 'quinn', 'rana', 'sam', 'simon', 'tom', 'upton', 'veronica', 'wayne', 'xan', 'yasmin', 'zaid']  
+        source: ['@ann', '@andrea', '@aaron', '@daryl', '@emma', '@faris', '@june', '@jane', '@jessica', '@john', '@myra', '@maria', '@mariam', '@mention', '@mona', '@omar', '@peter', '@quinn', '@rana', '@sam', '@simon', '@tom', '@upton', '@veronica', '@wayne', '@yasmin', '@zaid', '#work', '#product', '#marketing', '#customer']  
       });
       $('div#autotag').focus();
     });
@@ -89,14 +89,14 @@
           <pre class="prettyprint">
             &lt;div id="example" contenteditable="true"&gt;&lt;/div&gt;<br/>
             $('div#example').tagautocomplete({
-              source: ['ann', 'bill', 'casey']
+              source: ['@ann', '@bill', '@casey']
             });
           </pre>
           <h2 id="options">Options</h2>
           <pre class="prettyprint">
             $('div#example').tagautocomplete({
-              source: ['ann', 'bill', 'casey'],
-              character: '#', //character to match on
+              source: ['@ann', '@bill', '@casey', '#work', '#finance', '#home'],
+              character: '@#', //accept both @ and #
               after: function () {} //to run after selection  
             });
           </pre>
