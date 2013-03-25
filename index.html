@@ -41,7 +41,8 @@
     <script>
     $(document).ready(function(){
       $('div#autotag').tagautocomplete({
-        source: ['@ann', '@andrea', '@aaron', '@daryl', '@emma', '@faris', '@june', '@jane', '@jessica', '@john', '@myra', '@maria', '@mariam', '@mention', '@mona', '@omar', '@peter', '@quinn', '@rana', '@sam', '@simon', '@tom', '@upton', '@veronica', '@wayne', '@yasmin', '@zaid', '#work', '#product', '#marketing', '#customer']  
+        source: ['@ann', '@andrea', '@aaron', '@daryl', '@emma', '@faris', '@june', '@jane', '@jessica', '@john', '@myra', '@maria', '@mariam', '@mention', '@mona', '@omar', '@peter', '@quinn', '@rana', '@sam', '@simon', '@tom', '@upton', '@veronica', '@wayne', '@yasmin', '@zaid', '#work', '#product', '#marketing', '#customer'],
+        character: '@#'  
       });
       $('div#autotag').focus();
     });
