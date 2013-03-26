@@ -44,7 +44,7 @@
         source: ['@ann', '@andrea', '@aaron', '@daryl', '@emma', '@faris', '@june', '@jane', '@jessica', '@john', '@myra', '@maria', '@mariam', '@mention', '@mona', '@omar', '@peter', '@quinn', '@rana', '@sam', '@simon', '@tom', '@upton', '@veronica', '@wayne', '@yasmin', '@zaid', '#work', '#product', '#marketing', '#customer'],
         character: '@#'  
       });
-      $('div#autotag').focus();
+      $('div#autotag').first().focus();
     });
     </script>
   </head>
@@ -67,7 +67,9 @@
         <div class="span9 content">
           This is a bootstrap plugin to autocomplete tags for contenteditable div elements. It works in the same way tagging people on Facebook, Twitter or <a href="http://www.sandglaz.com">Sandglaz</a> works. By default, it triggers autocompletion as you type @. 
           <h2 id="demo">Demo</h2>
-          <div id="autotag" contenteditable="true">Start typing here. Use the @ sign to mention people.</div>
+          <div id="autotag" contenteditable="true">Start typing here. Use the @ sign to mention people.<br/> </div>
+          <br/>
+          <div id="autotag" contenteditable="true">It <u>works when</u> when there are <b>multiple</b> <i>html</i> nodes too!<br/> </div>
           <h2 id="features">Features</h2>
           <ul>
             <li>It will autocomplete for multiple tags.</li>
