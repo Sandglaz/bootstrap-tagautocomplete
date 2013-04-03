@@ -86,7 +86,7 @@
       var regex = new RegExp("(^|\\s)([" + this.options.character + "][\\w-]*)$");
       var result = regex.exec(query);
       if(result && result[2])
-        return result[2].trim();
+        return result[2].trim().toLowerCase();
       return '';
     }
 
