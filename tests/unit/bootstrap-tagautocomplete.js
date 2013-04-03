@@ -314,6 +314,21 @@ $(function () {
         tagautocomplete.$menu.remove()
       })
 
+      test("should be case insensitive and downcase for matching", function () {
+        var $div = $('<div contenteditable="true"  />').tagautocomplete({
+              source: ['@aaa', '@bbb', '@ccc']
+            }).appendTo('body')
+          , tagautocomplete = $div.data('tagautocomplete')
+        
+        $div.text('ss @A')
+        setCaretPosition($div[0], 5)
+        tagautocomplete.lookup()
+        equals(tagautocomplete.extractor(), '@a', '@a returned')
+
+        $div.remove()
+        tagautocomplete.$menu.remove()
+      })
+
       test("can override @ with another character", function () {
         var $div = $('<div contenteditable="true"  />').tagautocomplete({
               source: ['#aaa', '#bbb', '#ccc'],
