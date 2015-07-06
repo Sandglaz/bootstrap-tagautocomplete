@@ -39,22 +39,21 @@
     constructor: Tagautocomplete
 
   , select: function () {
-      var val = this.$menu.find('.active').attr('data-value')
+      var val = this.$menu.find('.active').attr('data-value');
+      var updated_val = this.updater(val);
+      var offset = updated_val.length - this.length_of_query;
+      var position = getCaretPosition(this.$element[0]) + offset;
 
-      var offset = this.updater(val).length - this.length_of_query;
-      var position = getCaretPosition(this.$element[0]) + offset
-
-      this.node.splitText(this.index_for_split);
-      this.node.nextSibling.splitText(this.length_of_query);
-      this.node.nextSibling.nodeValue=this.updater(val);
+      var text = this.$element.text();
+      text = text.slice(0, position - offset - this.length_of_query) + updated_val.substring(0, updated_val.length) + text.substring(position - offset, text.length);
+      this.$element.text(text);
 
       this.$element.change();
-
       this.after();
 
-      setCaretPosition(this.$element[0], position)  
+      setCaretPosition(this.$element[0], position);
 
-      return this.hide()
+      return this.hide();
     }
 
   , after: function () {
@@ -98,11 +97,8 @@
       var tquery = this.extractor();
       if(!tquery) return false;
 
-      //setting the values that will be needed by select() here, because mouse clicks can change these values.
+      // Set values that will be needed by select() here, because mouse clicks can change them
       this.length_of_query = tquery.length
-      var range = window.getSelection().getRangeAt(0);
-      this.index_for_split = range.startOffset - this.length_of_query;
-      this.node = range.startContainer
 
       return ~item.toLowerCase().indexOf(tquery)
     }
