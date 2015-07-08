@@ -29,6 +29,7 @@
     $.fn.typeahead.Constructor.call(this, element, options)
     this.after = this.options.after || this.after
     this.show = this.options.show || this.show
+    this.appendMenuTo = this.options.appendMenuTo || 'body';
   }
 
   /* NOTE: TAGAUTOCOMPLETE EXTENDS BOOTSTRAP-TYPEAHEAD.js
@@ -66,7 +67,7 @@
       var height = this.$element[0].offsetHeight;
 
       this.$menu
-        .appendTo('body')
+        .appendTo(this.appendMenuTo)
         .show()
         .css({
           position: "absolute",
