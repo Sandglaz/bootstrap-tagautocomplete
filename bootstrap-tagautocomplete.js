@@ -49,7 +49,7 @@
       this.$element.text(text);
 
       this.$element.change();
-      this.after();
+      this.after(position - offset - this.length_of_query, val);
 
       setCaretPosition(this.$element[0], position);
 
